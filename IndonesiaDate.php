@@ -22,9 +22,10 @@ class IndonesiaDate extends Model
     public static function create($datetime,$format = 'Y-m-d H:i:s')
     {
         $exp = explode(" ", $datetime);
-        $date = $exp[0];
-        $time = $exp[1];
+        $exp1 = explode("-", $exp[0]);
         $datetime = new \DateTime();
-        return $datetime->format($format);
+        if(count($exp1)>=3){
+            return $datetime->setDate($exp1[0],$exp1[1],$exp1[2])->format($format);
+        }
     }
 }
